@@ -19,18 +19,15 @@ var Reservation = function(){
       }, 10);
   });
 
-//Annuler la réservation courante
-var cancel = document.getElementById('cancel');
-cancel.addEventListener("click", function(){
-    cancelReservation();
-});
+  //Annuler la réservation
+  var cancel = document.getElementById('cancel');
+  cancel.addEventListener("click", function(){
+      cancelReservation();
+  });
 
-setInfoCustumer();
-displayIfExistReservation();
 
 //Afficher la réservation courante
   function showReservation(reservation){
-
       document.getElementById('reservationFirstName').innerHTML = reservation.firstName;
       document.getElementById('reservationLastName').innerHTML = reservation.lastName;
       document.getElementById('reservationStation').innerHTML = reservation.station;
@@ -60,26 +57,25 @@ displayIfExistReservation();
   }
 
   //Mise en session de la reservation courante
-      function setReservation(lastName, firstName, station) {
-          localStorage.setItem('firstName', firstName);
-          localStorage.setItem('lastName', lastName);
-          sessionStorage.setItem('station', station);
-          var dateLimit = new Date();
-          dateLimit.setMinutes(dateLimit.getMinutes() + 20);
-          sessionStorage.setItem('endDate', dateLimit.toString());
+    function setReservation(lastName, firstName, station) {
+        localStorage.setItem('firstName', firstName);
+        localStorage.setItem('lastName', lastName);
+        sessionStorage.setItem('station', station);
+        var dateLimit = new Date();
+        dateLimit.setMinutes(dateLimit.getMinutes() + 20);
+        sessionStorage.setItem('endDate', dateLimit.toString());
 
-          showReservation(getCurrentReservation());
-      }
+        showReservation(getCurrentReservation());
+    }
 
       // Si il n'y a pas de reservation
-      function showEmptyReservation(){
-        console.log('tjiodfhio');
-        $("#noReservation").removeAttr('hidden');
-        $("#reservationInProgress").attr('hidden', 'true');
-        $("#reserve").removeAttr('hidden');
-        $("#cancel").attr('hidden', 'true');
-        $("#reservation-success").attr('hidden', 'true');
-      }
+    function showEmptyReservation(){
+      $("#noReservation").removeAttr('hidden');
+      $("#reservationInProgress").attr('hidden', 'true');
+      $("#reserve").removeAttr('hidden');
+      $("#cancel").attr('hidden', 'true');
+      $("#reservation-success").attr('hidden', 'true');
+    }
 
 
       // Vérifie si il y a une réservation et affiche le message correspondant
@@ -94,15 +90,15 @@ displayIfExistReservation();
 
 
   // Vérifie si il y a des données en session et les affiches si présentes
-      function displayIfExistReservation(){
-          var currentReservation = getCurrentReservation();
-          if (currentReservation.firstName != null) {
-              showReservation(currentReservation);
-
-          } else {
-              showEmptyReservation();
-          }
-      }
+      // function displayIfExistReservation(){
+      //     var currentReservation = getCurrentReservation();
+      //     if (currentReservation.firstName != null) {
+      //         showReservation(currentReservation);
+      //
+      //     } else {
+      //         showEmptyReservation();
+      //     }
+      // }
 
 // Fonction pour annuler la reservation
   function cancelReservation() {
@@ -111,12 +107,6 @@ displayIfExistReservation();
       sessionStorage.removeItem('station');
       sessionStorage.removeItem('endDate');
       showEmptyReservation();
-  }
-
-  function setInfoCustumer () {
-      document.getElementById('firstName').value = getCurrentReservation().firstName;
-      document.getElementById('lastName').value = getCurrentReservation().lastName;
-
   }
 }
 
