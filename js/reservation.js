@@ -1,7 +1,7 @@
 let Reservation = function(){
 
   let formReservation = document.getElementById("formReservation");
-  formReservation.addEventListener("submit", function(){
+  formReservation.addEventListener("submit", function(e){
 
       let firstName = document.getElementById("firstName");
       let lastName = document.getElementById("lastName");
@@ -15,6 +15,9 @@ let Reservation = function(){
           setReservation(lastName.value, firstName.value, station.textContent);
           showReservation(getCurrentReservation());
       }
+
+      e.preventDefault();
+
       setTimeout(function(){
         window.scrollTo(0,document.body.scrollHeight);
       }, 10);
@@ -26,6 +29,8 @@ let Reservation = function(){
       cancelReservation();
   });
 
+  setInfoCustumer();
+  displayIfExistReservation();
 
 //Afficher la réservation
   function showReservation(reservation){
@@ -88,16 +93,16 @@ let Reservation = function(){
           }
 
 
-  // Vérifie si il y a des données en session et les affiches si présentes
-      // function displayIfExistReservation(){
-      //     let currentReservation = getCurrentReservation();
-      //     if (currentReservation.firstName != null) {
-      //         showReservation(currentReservation);
-      //
-      //     } else {
-      //         showEmptyReservation();
-      //     }
-      // }
+  // Vérifie si il y a des données et les affiches si présentes
+      function displayIfExistReservation(){
+          let currentReservation = getCurrentReservation();
+          if (currentReservation.firstName != null) {
+              showReservation(currentReservation);
+
+          } else {
+              showEmptyReservation();
+          }
+      }
 
 // Fonction pour annuler la reservation
   function cancelReservation(){
@@ -107,6 +112,11 @@ let Reservation = function(){
       sessionStorage.removeItem('endDate');
       showEmptyReservation();
   }
-}
+
+  function setInfoCustumer () {
+    document.getElementById('firstName').value = getCurrentReservation().firstName;
+    document.getElementById('lastName').value = getCurrentReservation().lastName;
+  }
+};
 
 let reservation = new Reservation();
