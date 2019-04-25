@@ -1,11 +1,11 @@
-var Reservation = function(){
+let Reservation = function(){
 
-  var formReservation = document.getElementById("formReservation");
+  let formReservation = document.getElementById("formReservation");
   formReservation.addEventListener("submit", function(){
 
-      var firstName = document.getElementById("firstName");
-      var lastName = document.getElementById("lastName");
-      var station = document.getElementById("stationName");
+      let firstName = document.getElementById("firstName");
+      let lastName = document.getElementById("lastName");
+      let station = document.getElementById("stationName");
 
       if(firstName.value.length === 0 || lastName.value.length === 0 || checkSignature === false){
           $("#form-error").removeAttr('hidden');
@@ -13,6 +13,7 @@ var Reservation = function(){
           $("#form-error").attr('hidden', 'true');
           $('#reservation-success').removeAttr('hidden');
           setReservation(lastName.value, firstName.value, station.textContent);
+          showReservation(getCurrentReservation());
       }
       setTimeout(function(){
         window.scrollTo(0,document.body.scrollHeight);
@@ -20,13 +21,13 @@ var Reservation = function(){
   });
 
   //Annuler la réservation
-  var cancel = document.getElementById('cancel');
+  let cancel = document.getElementById('cancel');
   cancel.addEventListener("click", function(){
       cancelReservation();
   });
 
 
-//Afficher la réservation courante
+//Afficher la réservation
   function showReservation(reservation){
       document.getElementById('reservationFirstName').innerHTML = reservation.firstName;
       document.getElementById('reservationLastName').innerHTML = reservation.lastName;
@@ -37,14 +38,14 @@ var Reservation = function(){
       $("#cancel").removeAttr('hidden');
 
       // Mise en place du timer 20 minutes pour une réservation
-      var timer = setInterval(function timerReservation() {
+      let timer = setInterval(function timerReservation() {
 
-          var endDate = sessionStorage.getItem('endDate');
-          var countDownDate = new Date(endDate);
-          var dateNow = new Date().getTime();
-          var distance = countDownDate - dateNow;
-          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          var secondes = Math.floor((distance % (1000 * 60)) / 1000);
+          let endDate = sessionStorage.getItem('endDate');
+          let countDownDate = new Date(endDate);
+          let dateNow = new Date().getTime();
+          let distance = countDownDate - dateNow;
+          let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          let secondes = Math.floor((distance % (1000 * 60)) / 1000);
 
           document.getElementById('reservationTimer').innerHTML = minutes + "m " + secondes + "s ";
           if (distance < 0) {
@@ -61,11 +62,9 @@ var Reservation = function(){
         localStorage.setItem('firstName', firstName);
         localStorage.setItem('lastName', lastName);
         sessionStorage.setItem('station', station);
-        var dateLimit = new Date();
+        let dateLimit = new Date();
         dateLimit.setMinutes(dateLimit.getMinutes() + 20);
         sessionStorage.setItem('endDate', dateLimit.toString());
-
-        showReservation(getCurrentReservation());
     }
 
       // Si il n'y a pas de reservation
@@ -91,7 +90,7 @@ var Reservation = function(){
 
   // Vérifie si il y a des données en session et les affiches si présentes
       // function displayIfExistReservation(){
-      //     var currentReservation = getCurrentReservation();
+      //     let currentReservation = getCurrentReservation();
       //     if (currentReservation.firstName != null) {
       //         showReservation(currentReservation);
       //
@@ -110,4 +109,4 @@ var Reservation = function(){
   }
 }
 
-var reservation = new Reservation();
+let reservation = new Reservation();
