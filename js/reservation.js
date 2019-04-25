@@ -38,7 +38,7 @@ let Reservation = function(){
       $("#cancel").removeAttr('hidden');
 
       // Mise en place du timer 20 minutes pour une réservation
-      let timer = setInterval(function timerReservation() {
+      let timer = setInterval(function timerReservation(){
 
           let endDate = sessionStorage.getItem('endDate');
           let countDownDate = new Date(endDate);
@@ -48,7 +48,7 @@ let Reservation = function(){
           let secondes = Math.floor((distance % (1000 * 60)) / 1000);
 
           document.getElementById('reservationTimer').innerHTML = minutes + "m " + secondes + "s ";
-          if (distance < 0) {
+          if (distance < 0){
               clearInterval(timer);
               showEmptyReservation();
           }
@@ -58,7 +58,7 @@ let Reservation = function(){
   }
 
   //Mise en session de la reservation courante
-    function setReservation(lastName, firstName, station) {
+    function setReservation(lastName, firstName, station){
         localStorage.setItem('firstName', firstName);
         localStorage.setItem('lastName', lastName);
         sessionStorage.setItem('station', station);
@@ -100,7 +100,7 @@ let Reservation = function(){
       // }
 
 // Fonction pour annuler la reservation
-  function cancelReservation() {
+  function cancelReservation(){
       localStorage.removeItem('firstName');
       localStorage.removeItem('lastName');
       sessionStorage.removeItem('station');
