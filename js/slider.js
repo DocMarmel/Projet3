@@ -1,87 +1,91 @@
-/* Variable pour le slide (auto) */
+let Slider = function(){
 
-let slides = document.querySelectorAll('#slides .slide');
-let currentSlide = 0;
-let slideInterval = setInterval(nextSlide, 5000);
+  /* Variable pour le slide (auto) */
 
-
-/* Variable pour le slide (manuel) */
-
-let next = document.getElementById('next');
-let previous = document.getElementById('previous');
+  let slides = document.querySelectorAll('#slides .slide');
+  let currentSlide = 0;
+  let slideInterval = setInterval(nextSlide, 5000);
 
 
-/* Variable pour le play/pause */
+  /* Variable pour le slide (manuel) */
 
-let playing = true;
-let pauseButton = document.getElementById('pause');
-
-
-/* Fontion slide suivant (auto) */
-
-function goToSlide(n){
-  slides[currentSlide].className = 'slide';
-  currentSlide = (n+slides.length)%slides.length;
-  slides[currentSlide].className = 'slide showing';
-}
+  let next = document.getElementById('next');
+  let previous = document.getElementById('previous');
 
 
-/* Fonction slide suivant/précedent (manuel) */
+  /* Variable pour le play/pause */
 
-function nextSlide(){
-  goToSlide(currentSlide+1);
-}
-
-function previousSlide(){
-  goToSlide(currentSlide-1);
-}
-
-next.onclick = function(){
-  pauseSlideshow();
-  nextSlide();
-  playSlideshow();
-}
-
-previous.onclick = function(){
-  pauseSlideshow();
-  previousSlide();
-  playSlideshow();
-}
+  let playing = true;
+  let pauseButton = document.getElementById('pause');
 
 
-/* Gérer le slider avec le clavier */
+  /* Fontion slide suivant (auto) */
 
-document.addEventListener('keydown', function (e){
-  if(e.key === 'ArrowRight'){
+  function goToSlide(n){
+    slides[currentSlide].className = 'slide';
+    currentSlide = (n+slides.length)%slides.length;
+    slides[currentSlide].className = 'slide showing';
+  }
+
+
+  /* Fonction slide suivant/précedent (manuel) */
+
+  function nextSlide(){
+    goToSlide(currentSlide+1);
+  }
+
+  function previousSlide(){
+    goToSlide(currentSlide-1);
+  }
+
+  next.onclick = function(){
     pauseSlideshow();
     nextSlide();
     playSlideshow();
-  }else if(e.key === 'ArrowLeft'){
+  }
+
+  previous.onclick = function(){
     pauseSlideshow();
     previousSlide();
     playSlideshow();
   }
-})
 
 
-/* Fonction play/pause */
+  /* Gérer le slider avec le clavier */
 
-function pauseSlideshow(){
-  pauseButton.innerHTML = '<i class="fas fa-play"></i>';
-  playing = false;
-  clearInterval(slideInterval);
-}
+  document.addEventListener('keydown', function (e){
+    if(e.key === 'ArrowRight'){
+      pauseSlideshow();
+      nextSlide();
+      playSlideshow();
+    }else if(e.key === 'ArrowLeft'){
+      pauseSlideshow();
+      previousSlide();
+      playSlideshow();
+    }
+  })
 
-function playSlideshow(){
-  pauseButton.innerHTML = '<i class="fas fa-pause"></i>';
-  playing = true;
-  slideInterval = setInterval(nextSlide, 5000);
-}
 
-pauseButton.onclick = function(){
-  if(playing){
-    pauseSlideshow();
-  }else{
-    playSlideshow();
+  /* Fonction play/pause */
+
+  function pauseSlideshow(){
+    pauseButton.innerHTML = '<i class="fas fa-play"></i>';
+    playing = false;
+    clearInterval(slideInterval);
   }
-};
+
+  function playSlideshow(){
+    pauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+    playing = true;
+    slideInterval = setInterval(nextSlide, 5000);
+  }
+
+  pauseButton.onclick = function(){
+    if(playing){
+      pauseSlideshow();
+    }else{
+      playSlideshow();
+    }
+  };
+}
+let slider = new Slider();
