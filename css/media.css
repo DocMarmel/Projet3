@@ -1,5 +1,14 @@
 /* Media queries */
 
+/* Pour les écrans entre 2560px et 1900px */
+
+@media screen and (min-width: 1900px) and (max-width: 2560px){
+  .slide{
+    width: 39%;
+    margin-left: 30%;
+  }
+}
+
 /* Pour écran plus petit que 1300px */
 
 @media all and (max-width: 1300px){
@@ -20,14 +29,25 @@
     top: 100px;
     left: 20%;
   }
+  #slides{
+    height: 640px;
+  }
+
+  .slide{
+    width: 100%;
+    margin-left: 0%;
+    padding: 0;
+  }
 }
+
+/* Pour écran plus petit que 800px */
 
 @media all and (max-width: 800px){
   #map{
     width: 95%;
     margin: 0 2%;
   }
-  
+
   .reservation_form{
     position: relative;
     display: block;
@@ -39,6 +59,10 @@
     top: 0;
     left: 0;
     margin: 25px 2%;
+  }
+
+  #slides{
+    height: 425px;
   }
 }
 
@@ -127,5 +151,9 @@
 
   #menu_burger input:checked ~ ul{
     transform: none;
+  }
+
+  #slides{
+    height: 250px;
   }
 }
