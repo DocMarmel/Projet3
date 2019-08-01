@@ -1,0 +1,160 @@
+/* Eléments principaux de la page */
+
+body{
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+}
+
+
+/* Menu */
+
+.menu{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  z-index: 1001;
+}
+
+.nav_menu{
+  float: right;
+  max-width: 100%;
+  margin-right: 5%;
+}
+
+.nav_menu ul{
+  list-style: none;
+  margin: 0;
+}
+
+.nav_menu ul li{
+  float: left;
+  margin: 0 30px;
+  padding-top: 15px;
+  height: 100px;
+}
+
+.nav_menu li a{
+  color: black;
+  font-size: 1.125em;
+}
+
+.nav_menu input{
+  opacity: 0;
+}
+
+
+/* Logo header */
+
+header .logo{
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  left: 0;
+}
+
+
+/* Slider */
+
+#slider, #reservation{
+  padding-top: 120px;
+}
+
+#slides {
+    position: relative;
+    height: 500px;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+.slide {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 53%;
+    height: 100%;
+    margin-left: 23%;
+    opacity: 0;
+    z-index: 1;
+    padding: 40px;
+    box-sizing: border-box;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+}
+
+.img_slider{
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}
+
+.showing {
+    opacity: 1;
+    z-index: 2;
+}
+
+
+/* Btn Slider */
+
+#controls{
+  text-align: center;
+  margin-top: 5px;
+}
+
+.controls{
+  padding: 5px 1%;
+}
+
+
+/* Map */
+
+#map{
+  border: 1px solid black;
+  margin-left: 5%;
+  width: 70%;
+  height: 800px;
+  display: inline-block;
+  z-index: 1;
+}
+
+
+/* Formulaire de réservation */
+
+.reservation_form{
+  position: absolute;
+  display: inline-block;
+  margin-left: 4%;
+  z-index: 0;
+  border: 1px solid black;
+  padding: 2%;
+}
+
+form{
+  display: inline-block;
+  position: relative;
+  top: 0;
+}
+
+.reservation_time{
+  border: 1px solid black;
+  padding: 1%;
+  margin: 25px 25%;
+}
+
+
+/* Canvas */
+
+#signature{
+  width:250px;
+  height:150px;
+  border:1px solid #000;
+}
